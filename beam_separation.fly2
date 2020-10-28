@@ -1,0 +1,93 @@
+particles {
+  coordinates = 0,
+  standard_beam {
+    n = 500,
+    tob = 0,
+    mass = 1.00727647,
+    charge = 1,
+    cwf = 1,
+    color = 0,
+    direction = vector(0, 0, -1),
+    position = cylinder_distribution {
+      center = vector(10, 20, 195),
+      axis = vector(0, 0, -1),
+      radius = 1,
+      length = 0,
+      fill = true
+    },
+    speed = 500,
+    format = ""
+  },
+  standard_beam {
+    n = 500,
+    tob = 0,
+    mass = 1.00727647,
+    charge = 1,
+    cwf = 1,
+    color = 1,
+    direction = vector(0, 0, -1),
+    position = cylinder_distribution {
+      center = vector(10, 20, 195),
+      axis = vector(0, 0, -1),
+      radius = 1,
+      length = 0,
+      fill = true
+    },
+    speed = 507.2,
+    format = ""
+  },
+  standard_beam {
+    n = 500,
+    tob = 0,
+    mass = 1.00727647,
+    charge = 1,
+    cwf = 1,
+    color = -6,
+    direction = vector(0, 0, -1),
+    position = cylinder_distribution {
+      center = vector(10, 20, 195),
+      axis = vector(0, 0, -1),
+      radius = 1,
+      length = 0,
+      fill = true
+    },
+    speed = 492.8,
+    format = ""
+  },
+  standard_beam {
+    n = 500,
+    tob = 0,
+    mass = 1.00727647,
+    charge = 1,
+    cwf = 1,
+    color = 2,
+    direction = vector(0, 0, -1),
+    position = cylinder_distribution {
+      center = vector(10, 20, 195),
+      axis = vector(0, 0, -1),
+      radius = 1,
+      length = 0,
+      fill = true
+    },
+    speed = 514.4,
+    format = ""
+  },
+  standard_beam {
+    n = 500,
+    tob = 0,
+    mass = 1.00727647,
+    charge = 1,
+    cwf = 1,
+    color = 3,
+    direction = vector(0, 0, -1),
+    position = cylinder_distribution {
+      center = vector(10, 20, 195),
+      axis = vector(0, 0, -1),
+      radius = 1,
+      length = 0,
+      fill = true
+    },
+    speed = 485.6,
+    format = ""
+  }
+}

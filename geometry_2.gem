@@ -1,0 +1,25 @@
+pa_define(21,401,201, planar,non-mirrored,M,100)
+
+locate(0,0,0) 
+{
+	Pole(0)
+	{   
+		fill 
+		{
+			within 
+			{
+				box3d(2,5,5,7,395,195)
+			}
+		}
+	}
+	Pole(60)
+	{
+		fill 
+		{
+			within 
+			{
+				box3d(13,5,5,18,395,195)
+			}
+		}
+	}
+}
