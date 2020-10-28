@@ -1,0 +1,48 @@
+
+local t = {coordinates = 0}
+local y = 0
+local v = 0
+local v0 = 700E3
+local density = 3E6
+local mi = 1.672649E-27
+local me = 9.11E-31
+local m = mi
+local q = 1.602176565E-19
+local kb = 1.38064852E-23
+local T = 2E5
+local kappa = 3
+local vt = (2*kb*T/m)^(1/2)
+local tau = 5E-3
+local radius = 1E-3
+local Phi0 = 360
+local Theta0 = 5
+local A = math.pi*radius^2
+local G = tau*A*(Phi0*math.pi/180)*(1-math.cos(Theta0/2*math.pi/180))
+local K_kappa = (2/(math.pi*(2*kappa-3)))^(3/2)*6/1.3293
+local dv = 1000 -- m/s
+for	i=1,5E3 do
+	v = i*1E3
+	y = math.floor(G*density*(1/vt^3)*K_kappa*(v^3)*(1+(2/(2*kappa-3))*((v-v0)^2/vt^2))^(-kappa-1)*dv)
+	if y > 0 then
+		t[#t+1] = standard_beam {
+					n = y,
+					tob = 0,
+					mass = 1.00727647,
+					charge = 1,
+					cwf = 1,
+					color = 0,
+					direction = vector(0, 0, -1),
+					position = cylinder_distribution {
+					  center = vector(10, 15, 195),
+					  axis = vector(0, 0, -1),
+					  radius = radius*1E3,
+					  length = 0,
+					  fill = true
+					},
+					speed = i,
+					format = ""
+				  }
+	end
+end
+
+particles(t)

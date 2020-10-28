@@ -1,0 +1,72 @@
+local t = {coordinates = 0}
+local y = 0
+local v = 0
+local v0 = 500E3
+local v0_a = v0
+local density_e = 5E6
+local density_a = 3.5*density_e/100
+local density_p = density_e - density_a
+local mi = 1.672649E-27
+local me = 9.11E-31
+local m = mi
+local m_a = 6.644657E-27
+local q = 1.602176565E-19
+local kb = 1.38064852E-23
+local T = 1E5
+local T_a = 1.5*T
+local vt = (2*kb*T/m)^(1/2)
+local vt_a = (2*kb*T_a/m_a)^(1/2)
+local tau = 5E-3
+local radius = 1E-3
+local Phi0 = 360
+local Theta0 = 5
+local A = math.pi*radius^2
+local G = tau*A*(Phi0*math.pi/180)*(1-math.cos(Theta0/2*math.pi/180))
+local dv = 1000 -- m/s
+for	i=1,1E3 do
+	v = i*1E3
+	y = math.floor(G*(density_p/(math.pi^(3/2)*vt^3))*(v^3)*math.exp(-(v-v0)^2/vt^2)*dv)
+	if y > 0 then
+		t[#t+1] = standard_beam {
+					n = y,
+					tob = 0,
+					mass = 1.00727647,
+					charge = 1,
+					cwf = 1,
+					color = 0,
+					direction = vector(0, 0, -1),
+					position = cylinder_distribution {
+					  center = vector(10, 15, 195),
+					  axis = vector(0, 0, -1),
+					  radius = radius*1E3,
+					  length = 0,
+					  fill = true
+					},
+					speed = i,
+					format = ""
+				  }
+	end
+	y = math.floor(G*(density_a/(math.pi^(3/2)*vt_a^3))*(v^3)*math.exp(-(v-v0_a)^2/vt_a^2)*dv)
+	if y > 0 then
+		t[#t+1] = standard_beam {
+					n = y,
+					tob = 0,
+					mass = 4.0012,
+					charge = 2,
+					cwf = 1,
+					color = 1,
+					direction = vector(0, 0, -1),
+					position = cylinder_distribution {
+					  center = vector(10, 15, 195),
+					  axis = vector(0, 0, -1),
+					  radius = radius*1E3,
+					  length = 0,
+					  fill = true
+					},
+					speed = i,
+					format = ""
+				  }
+	end
+end
+
+particles(t)
