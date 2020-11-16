@@ -25,7 +25,7 @@ nb_pix = floor(instrument_length/pixel_size);
 tau = 5e-3;
 Phi0 = 360;  % azymuthal aperture angle
 Theta0 = 5;    % elevation aperture angle
-G = tau*A*(Phi0*pi/180)*(1-cos(Theta0/2*pi/180));
+G = tau*A*(Phi0/4*pi/180)*(1-cos(Theta0*pi/180));
 
 final_pos = (file(:,2)-y_center).*1e-3;
 final_pos = sort(final_pos);

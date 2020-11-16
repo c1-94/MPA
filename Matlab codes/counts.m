@@ -21,6 +21,8 @@ A = pi*r^2;  % aperture area
 Phi0 = 360;  % azymuthal aperture angle
 Theta0 = 5;    % elevation aperture angle
 tau = 5e-3; % acquisition time
+G = tau*A*(Phi0/4*pi/180)*(1-cos(Theta0*pi/180));
+
 
 y_maxwell = v.^3.*exp(-(v-v0).^2/vt^2); % velocity part of the spherical 3D distribution
 y_1D_maxwell = v.*exp(-(v-v0).^2/vt^2);  % velocity part of the 1D distribution
@@ -36,12 +38,12 @@ for i=1:length(v)-1
     S_kappa = S_kappa + (v(i+1)-v(i))*(y_kappa(i+1)+y_kappa(i))/2;  % integration over velocities
 end
 
-C_maxwell = N*tau*A*(m/(2*pi*kb*T))^(3/2)*(Phi0*pi/180)*(1-cos(Theta0/2*pi/180))*S_maxwell     % total number of counts over all velocities
+C_maxwell = N*G*(m/(2*pi*kb*T))^(3/2)*S_maxwell     % total number of counts over all velocities
 C_1D_maxwell = N*tau*A*(m/(2*pi*kb*T))^(1/2)*S_1D_maxwell     % total number of counts over all velocities 1D
-Cv_maxwell = tau*A*(N/(pi^(3/2)*vt^3))*(Phi0*pi/180)*(1-cos(Theta0/2*pi/180)).*y_maxwell;  % number of counts as a function of velocity
+Cv_maxwell = G*(N/(pi^(3/2)*vt^3)).*y_maxwell;  % number of counts as a function of velocity
 Cv_1D_maxwell = N*tau*A*v*(m/(2*pi*kb*T))^(1/2).*exp(-(v-v0).^2/vt^2);   % number of counts as a function of velocity 1D
-C_kappa = N*tau*A*K_kappa*(Phi0*pi/180)*(1-cos(Theta0/2*pi/180))*S_kappa
-Cv_kappa = N*tau*A*K_kappa*(Phi0*pi/180)*(1-cos(Theta0/2*pi/180)).*y_kappa;
+C_kappa = N*G*K_kappa*S_kappa
+Cv_kappa = N*G*K_kappa.*y_kappa;
 
 figure()
 semilogy(v, Cv_maxwell);

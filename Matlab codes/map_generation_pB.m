@@ -40,7 +40,7 @@ for p_B=1:length(list_B)
         B0 = list_B(p_B);
         pixel_size = list_l(p_l);
         nb_pix = floor(instrument_length/pixel_size);
-        G = tau*A*(Phi0*pi/180)*(1-cos(Theta0/2*pi/180));
+        G = tau*A*(Phi0/4*pi/180)*(1-cos(Theta0*pi/180));
         Cv_maxwell = N*G*(1/(pi^(3/2)*vt^3)).*y_maxwell;  % number of counts as a function of velocity
         Cv_kappa = N*G*(1/vt^3)*K_kappa.*y_kappa;
         
